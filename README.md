@@ -1,39 +1,24 @@
-# [M4TT72 | Terminal](https://term.m4tt72.com)
+import mplfinance as mpf
+import pandas as pd
 
-A terminal style website
+# Sample data
+dates = pd.date_range(start="2023-01-01", periods=30, freq="D")
+prices = {
+    "Open": [1.1, 1.12, 1.11, 1.13, 1.15, 1.14, 1.13, 1.16, 1.18, 1.19, 1.17, 1.16, 1.14, 1.15, 1.13, 1.12, 1.1, 1.08, 1.1, 1.09, 1.11, 1.12, 1.1, 1.09, 1.11, 1.12, 1.13, 1.14, 1.16, 1.15],
+    "High": [1.12, 1.13, 1.12, 1.15, 1.16, 1.15, 1.14, 1.18, 1.19, 1.2, 1.18, 1.17, 1.15, 1.16, 1.14, 1.13, 1.12, 1.1, 1.12, 1.1, 1.12, 1.13, 1.12, 1.1, 1.12, 1.14, 1.15, 1.16, 1.18, 1.17],
+    "Low": [1.08, 1.1, 1.09, 1.12, 1.13, 1.12, 1.12, 1.14, 1.17, 1.18, 1.15, 1.14, 1.12, 1.13, 1.12, 1.11, 1.08, 1.07, 1.09, 1.07, 1.1, 1.1, 1.08, 1.07, 1.1, 1.11, 1.12, 1.14, 1.15, 1.14],
+    "Close": [1.11, 1.12, 1.1, 1.14, 1.15, 1.13, 1.13, 1.17, 1.18, 1.19, 1.16, 1.15, 1.13, 1.14, 1.12, 1.11, 1.09, 1.08, 1.1, 1.09, 1.11, 1.11, 1.09, 1.08, 1.11, 1.12, 1.13, 1.15, 1.16, 1.16],
+}
+df = pd.DataFrame(prices, index=dates)
 
-![screenshot](/docs/screenshot.png)
-
-## IMPORTANT
-
-This is a new version of [m4tt72/terminal](https://github.com/m4tt72/terminal), which is built with [Svelte](https://svelte.dev/).
-
-If you are looking for the old version, please check out the [v2 branch](https://github.com/m4tt72/terminal/tree/v2).
-
-The old version is built with [React](https://reactjs.org/), and it is no longer maintained.
-
-Thanks!
-
-## Quick Start
-
-### Using docker (recommended)
-
-```bash
-docker run -d --name terminal -p 3000:3000 ghcr.io/m4tt72/terminal
-```
-
-### Using npm/yarn
-
-1. Install dependencies:
-
-```bash
-yarn install
-```
-
-3. Run the server:
-
-```bash
-yarn dev
+# Plot candlestick chart
+mpf.plot(
+    df,
+    type="candle",
+    title="Japanese Candlestick Chart Example",
+    ylabel="Price",
+    style="yahoo",
+)
 ```
 
 ## Themes
